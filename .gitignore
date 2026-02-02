@@ -1,0 +1,8 @@
+__pycache__
+.mypy_cache
+data/logs
+modules/site-packages
+*.swp
+*.swo
+backup/
+*.pth
