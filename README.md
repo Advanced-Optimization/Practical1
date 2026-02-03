@@ -1,3 +1,5 @@
-# Emio.lab_learning
+# Practical 1
 
-See `./lab_learned.md` for a description of the lab.
+To perform this practical, you need to follow the instructions provided on Canvas. 
+
+If you are just browsing, you can take a look at `./lab_practical1.md` for a description of the lab.
