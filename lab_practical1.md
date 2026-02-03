@@ -114,6 +114,10 @@ Run the sofa simulation and observe how the robot moves to the prescribed points
 
 #runsofa-button("assets/labs/Practical1/sofa_sim.py", "eval_pytorch_model_path", "sphere", "0.1")
 
+For **Ubuntu** users, use this button instead:
+
+#python-button("'assets/labs/Practical1/python_sofa_sim_ubuntu.py' data/results/blueleg_beam_cube.pth")
+
 :::
 
 After successfully completing Exercise 4 and showing the working simulation to your teaching crew, you may continue with Exercise 5. 
@@ -137,6 +141,8 @@ will solve inverse kinematics using a model-based way. However, to get good perf
 
 ::: exercise
 **Exercise 6:**
+
+*WARNING*: this exercise is currently under construction. If you get to this point, please talk to the teaching crew before doing any of the below. 
 
 - In `train_model.py`, there is an option to use `calibrated` instead of `pytorch`. Inspect the code for the proposed calibration and comment on the implementation. In particular, what principle is being used here to calibrate the Young modulus? 
 
