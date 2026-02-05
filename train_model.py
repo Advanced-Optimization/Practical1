@@ -2,9 +2,31 @@ import os
 import sys
 from pathlib import Path
 
+if os.name == "posix":
+    os.environ["SOFA_ROOT"] = "/opt/emio-labs/resources/sofa"
+    sys.path.insert(0, "~/emio-labs/v25.12.01/assets")
+    sys.path.insert(
+        0,
+        "/opt/emio-labs/resources/sofa/plugins/SofaPython3/lib/python3/site-packages/",
+    )
+else:
+    home = Path.home()
+    appdata = os.getenv("LOCALAPPDATA")
+    os.environ["SOFA_ROOT"] = os.path.join(
+        appdata, "Programs\\emio-labs\\resources\\sofa"
+    )
+    sys.path.append(home.joinpath("/emio-labs/v25.12.01/assets"))
+    sys.path.append(
+        os.path.join(
+            os.environ["SOFA_ROOT"], "plugins\\SofaPython3\\lib\\python3\\site-packages"
+        )
+    )
+
 from modules.calibration import calibrate_young
+from modules.lab_utils import load_dataset
 from modules.pytorch_mlp import PytorchMLPReg
-from modules.utils import load_dataset
+
+DEFAULT = "pytorch"
 
 
 def train_pytorch_model(dataset_path, from_real=False):
@@ -20,19 +42,6 @@ def train_pytorch_model(dataset_path, from_real=False):
     print(f"Trained model saved at {fname}")
 
 
-def calibrate_model(dataset_path, from_real=False):
-    # use the dataset to calbirate for Young modulus
-
-    # finite-diffference gradient descent
-    E = calibrate_young(dataset_path, from_real)
-
-    # save the calbiration to a file
-    fname = "data/results/model_calibrated.json"
-    data = {"young_modulus": E}
-    raise NotImplementedError("write data to a json file")
-    pass
-
-
 if __name__ == "__main__":
     import argparse
 
@@ -42,13 +51,15 @@ if __name__ == "__main__":
         "--model-type",
         type=str,
         choices=["pytorch", "calibrated"],
-        default="pytorch",
+        default=DEFAULT,
         help="Model type: pytorch or calibrated",
     )
     parser.add_argument(
         "--dataset-path",
         type=Path,
-        default=Path("data/results/blueleg_beam_sphere.csv"),
+        default=Path(
+            "/home/frederike/emio-labs/v25.12.01/assets/labs/Practical1/data/results/blueleg_beam_sphere.csv"
+        ),
         help="Path to dataset CSV",
     )
     parser.add_argument(
@@ -67,7 +78,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     if model_type == "calibrated":
-        calibrate_model(dataset_path, learn_from_real)
+        calibrate_young(dataset_path, learn_from_real)
     elif model_type == "pytorch":
         train_pytorch_model(dataset_path, learn_from_real)
     else:

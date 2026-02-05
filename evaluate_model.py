@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-from modules.utils import load_dataset
+from modules.lab_utils import load_dataset
 
 
 def evaluate_pytorch_model(dataset_path, model_path):

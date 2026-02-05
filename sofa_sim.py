@@ -10,7 +10,7 @@ import Sofa
 import Sofa.ImGui as MyGui
 
 from modules.targets import Targets
-from modules.utils import *
+from modules.lab_utils import *
 
 INPUT_FMT = "!3f"     # network byte order
 OUTPUT_FMT = "!4f"

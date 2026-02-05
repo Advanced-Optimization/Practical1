@@ -143,16 +143,18 @@ will solve inverse kinematics using a model-based way. However, to get good perf
 ::: exercise
 **Exercise 6:**
 
-- In `train_model.py`, there is an option to use `calibrated` instead of `pytorch`. Inspect the code for the proposed calibration and comment on the implementation. In particular, what principle is being used here to calibrate the Young modulus? 
+- In `train_model.py`, there is an option to use `calibrated` instead of `pytorch`. Inspect the code for the proposed calibration and comment on the implementation. In particular, what principle is being used here to calibrate the Young modulus?
 
-- Then, run `train_model.py` using the `calibrated` option, and observe the convergence behavior.
-Can you suggest an improvement to have better performance? Implement the improvement and describe performance improvements. 
+- Go to `train_model.py` and make sure the default variable is set to calibrated: `DEFAULT="calibrated"`. 
 
-- Finally, evaluate the model using `evaluate_model.py` with the `calibrated` option. Compare the performance of this parametric model with the deep-learned model.
+- By clicking the below button, you run `train_model.py` using the calibrated option. Observe the convergence behavior. Do you understand why the algorithm behaves the way it does? 
+
+#python-button("assets/labs/Practical1/train_model.py")
+
 
 ::: 
 
-In Practical 2, we will use the calibrated model in our inverse kinematics pipeline, and you can properly compare this model-based approach with the deep-learning approach. 
+In Practical 2, we will fix the above behavior and use the calibrated model in our inverse kinematics pipeline, and you can then properly compare this model-based approach with the deep-learning approach. 
 
 ::::
 
